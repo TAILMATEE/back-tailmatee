@@ -5,6 +5,7 @@ import express from 'express'
 import helmet from 'helmet'
 import morgan from 'morgan'
 import apiLimiter from '../src/middlewares/validate-PetitionsLimit.js'
+import csrfProtection from '../src/middlewares/csrfProtection.js'
 
 import { dbConnection } from './mongo.js'
 import {adminCredentials} from './defaultCredentials.js'
@@ -49,6 +50,8 @@ class Server {
         this.app.use(express.json())
         this.app.use(helmet())
         this.app.use(morgan('dev'))
+        this.app.use(csrfProtection);
+
     }
 
     listen(){
