@@ -7,6 +7,9 @@ import morgan from 'morgan'
 import apiLimiter from '../src/middlewares/validate-PetitionsLimit.js'
 
 import { dbConnection } from './mongo.js'
+import {adminCredentials} from './defaultCredentials.js'
+
+import TailUser from '../src/tailUser/tailUser.model.js';
 
 class Server {
     constructor(){
@@ -15,10 +18,29 @@ class Server {
 
         this.middlewares();
         this.connectDB();
+        this.defaultCredentials();
+        
     }
 
     async connectDB () {
         await dbConnection();
+    }
+
+    async defaultCredentials() {
+
+        const searchingAdminCredentials = await TailUser.findOne({
+            username: 'ADMINB'});
+
+        if (!searchingAdminCredentials) {
+
+            adminCredentials();
+
+        }else{
+
+            console.log('Admin Already Created');
+
+        }
+
     }
 
     async middlewares(){
