@@ -1,5 +1,7 @@
 import TailUser from '../src/tailUser/tailUser.model.js';
 
+import ValidationTailUser from '../src/generalValidation/validationTailUser.model.js';
+
 import bcryptjs from 'bcryptjs';
 
 import { format , parse} from 'date-fns';
@@ -61,6 +63,78 @@ export const adminCredentials = async () => {
     tailAdmin.password = bcryptjs.hashSync(tailAdmin.password, salt);
 
     await tailAdmin.save();
+
+    const male = new ValidationTailUser({
+
+        gender: 'male',
+
+    })
+
+    const female = new ValidationTailUser({
+
+        gender: 'female',
+
+    })
+
+    await male.save();
+
+    await female.save();
+
+    const admin = new ValidationTailUser({
+
+        role: 'tailAdmin',
+
+    })
+
+    const user = new ValidationTailUser({
+
+        role: 'tailUser',
+
+    })
+
+    await admin.save();
+
+    await user.save();
+
+    const privateAccount = new ValidationTailUser({
+
+        typeAccount: 'private'
+
+    });
+
+    const publicAccount = new ValidationTailUser({ 
+        
+        typeAccount: 'public' 
+    
+    });
+
+    await publicAccount.save();
+
+    await privateAccount.save();
+
+    const active = new ValidationTailUser({
+
+        status: 'active'
+
+    });
+
+    const inactive = new ValidationTailUser({
+
+        status: 'inactive'
+
+    });
+
+    const blocked = new ValidationTailUser({
+
+        status: 'blocked'
+
+    });
+
+    await active.save();
+
+    await inactive.save();
+
+    await blocked.save();
 
     console.log('Admin Credentials Created');
 
