@@ -4,7 +4,7 @@ import ValidationTailUser from '../src/generalValidation/validationTailUser.mode
 
 import bcryptjs from 'bcryptjs';
 
-import { format , parse} from 'date-fns';
+import { format , parse } from 'date-fns';
 
 export const withoutTime = (date) =>{
 

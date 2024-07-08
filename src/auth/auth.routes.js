@@ -4,7 +4,7 @@ import { check } from 'express-validator'
 
 import { validateFields } from '../middlewares/validate-fields.js'
 
-import { login } from './auth.controller.js'
+import { login, register } from './auth.controller.js'
 
 import csrfProtection  from '../middlewares/csrfProtection.js'
 
@@ -24,5 +24,32 @@ router.post(
     ], login
 
 );
+
+router.post(
+
+    '/register',
+    [
+
+        check('name', 'Name is required').not().isEmpty(),
+
+        check('lastname', 'Lastname is required').not().isEmpty(),
+
+        check('username', 'Username is required').not().isEmpty(),
+
+        check('birthdate', 'birthdate is required').not().isEmpty(),
+
+        check('gender', 'Gender is required').not().isEmpty(),
+
+        check('email', 'Email is required').not().isEmpty(),
+
+        check('password', 'Password is required').not().isEmpty(),
+
+        check('phone', 'Phone is required').not().isEmpty(),
+        
+        validateFields
+
+    ], register
+    
+)
 
 export default router;

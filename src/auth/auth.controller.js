@@ -4,6 +4,42 @@ import { generateJWT } from '../helpers/generate-jwt.js';
 
 import bcryptjs from 'bcryptjs';
 
+import { withoutTime } from '../../configs/defaultCredentials.js';
+
+export const calculateAge = (birthdate) =>{
+
+    const birthYear = birthdate.getFullYear();
+
+    const birthMonth = birthdate.getMonth();
+    
+    const birthDate = birthdate.getDate();
+
+    const actualYear = new Date().getFullYear();
+
+    const actualMonth = new Date().getMonth();
+
+    const actualDay = new Date().getDate();
+
+    let age = actualYear - birthYear;
+
+    console.log(birthMonth);
+
+    console.log(birthDate);
+
+    if((actualMonth - (birthMonth + 1) ) < 0){
+
+        if((actualDay - (birthDate + 1)) < 0){
+
+            age = age - 1;
+
+        }
+
+    }
+
+    return age;
+
+}
+
 export const login = async (req, res) => {
 
     try{
@@ -71,6 +107,35 @@ export const register = async (req, res) => {
 
     const { name, lastname, username, birthdate, gender, email, password, phone } = req.body;
 
-    
+    const formatDate = withoutTime(birthdate);
+
+    const age = calculateAge(formatDate);
+
+    const tailUser = new TailUser({
+
+        name,
+        lastname,
+        username,
+        birthdate: formatDate,
+        age,
+        gender,
+        email,
+        password,
+        role: 'tailUser',
+        phone,
+        typeAccount: 'public',
+        status: 'active'
+
+    });
+
+    const salt = bcryptjs.genSaltSync();
+
+    tailUser.password = bcryptjs.hashSync(tailUser.password, salt);
+
+    await tailUser.save();
+
+    res.status(200).json({
+        msg: `User created Successfully: Username: ${username}, password: ${password}`
+      });
 
 }
