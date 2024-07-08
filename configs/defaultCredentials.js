@@ -6,6 +6,8 @@ import bcryptjs from 'bcryptjs';
 
 import { format , parse } from 'date-fns';
 
+import { calculateAge } from '../src/auth/auth.controller.js'
+
 export const withoutTime = (date) =>{
 
     const parseDate = parse(date, 'dd-MM-yyyy', new Date()); // Format to received Postman
@@ -24,7 +26,7 @@ export const adminCredentials = async () => {
 
     const formatDate = withoutTime(bds);
 
-    console.log(formatDate);
+    const age = calculateAge(formatDate);
 
     const tailAdmin = new TailUser({
 
@@ -38,7 +40,7 @@ export const adminCredentials = async () => {
 
         birthdate: formatDate,
 
-        age: 19,
+        age,
 
         gender: 'male',
 
