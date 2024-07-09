@@ -60,11 +60,49 @@ export const adminCredentials = async () => {
 
     })
 
+    const tailSupport = new TailUser({
+
+        name: 'SUPPORT',
+
+        lastname: 'SUPPORT',
+
+        username: 'SUPPORT',
+
+        description: 'This is the default support account',
+
+        birthdate: formatDate,
+
+        age,
+
+        gender: 'male',
+
+        email: 'support@tailmatee.com',
+
+        password: 'Support12!',
+
+        imgProfile: '',
+
+        role: 'tailSupport',
+
+        phone: '+502 00000000',
+
+        typeAccount: 'public',
+
+        status: 'active'
+
+    })
+
     const salt = bcryptjs.genSaltSync();
 
     tailAdmin.password = bcryptjs.hashSync(tailAdmin.password, salt);
 
     await tailAdmin.save();
+
+    const salt2 = bcryptjs.genSaltSync();
+
+    tailSupport.password = bcryptjs.hashSync(tailSupport.password, salt2);
+
+    await tailSupport.save();
 
     const male = new ValidationTailUser({
 
@@ -94,9 +132,25 @@ export const adminCredentials = async () => {
 
     })
 
+    const house = new ValidationTailUser({
+
+        role: 'tailHouse'
+
+    })
+
+    const support = new ValidationTailUser({
+
+        role: 'tailSupport'
+
+    })
+
     await admin.save();
 
     await user.save();
+
+    await house.save();
+
+    await support.save();
 
     const privateAccount = new ValidationTailUser({
 

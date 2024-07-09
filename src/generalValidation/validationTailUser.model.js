@@ -12,7 +12,7 @@ const validationTailUserSchema = new mongoose.Schema({
     role: {
 
         type: String,
-        enum: ['tailUser', 'tailAdmin']
+        enum: ['tailUser', 'tailAdmin', "tailHouse", "tailSupport"]
 
     },
 

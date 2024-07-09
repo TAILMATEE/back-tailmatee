@@ -71,7 +71,7 @@ const tailUserSchema = new mongoose.Schema({
 
         type: String,
         required: true,
-        enum: ["tailAdmin", "tailUser"],
+        enum: ["tailAdmin", "tailUser", "tailHouse", "tailSupport"],
         default: "tailUser"
 
     },
