@@ -6,9 +6,26 @@ import { validateFields } from '../middlewares/validate-fields.js'
 
 import { login, register } from './auth.controller.js'
 
-import { existentUsername } from '../helpers/validate-db.js'
+import { 
 
-import { maxCharactersName, maxCharactersLastname, maxCharactersUsername, validYear } from '../helpers/validate-fields.js'
+    existentUsername,
+    existentGender,
+    existentEmail
+
+ } from '../helpers/validate-db.js'
+
+import { 
+    
+    maxCharactersName, 
+    maxCharactersLastname, 
+    maxCharactersUsername, 
+    validYear,
+    validMonth,
+    validDate,
+    validateBirthDate,
+    validationPassword
+
+ } from '../helpers/validate-fields.js'
 
 import csrfProtection  from '../middlewares/csrfProtection.js'
 
@@ -52,11 +69,25 @@ router.post(
 
         check('birthdate').custom(validYear),
 
+        check('birthdate').custom(validMonth),
+
+        check('birthdate').custom(validDate),
+
+        check('birthdate').custom(validateBirthDate),
+
         check('gender', 'Gender is required').not().isEmpty(),
+
+        check('gender').custom(existentGender),
 
         check('email', 'Email is required').not().isEmpty(),
 
+        check('email', 'Email is not valid').isEmail(),
+
+        check('email').custom(existentEmail),
+
         check('password', 'Password is required').not().isEmpty(),
+
+        check('password').custom(validationPassword),
 
         check('phone', 'Phone is required').not().isEmpty(),
 

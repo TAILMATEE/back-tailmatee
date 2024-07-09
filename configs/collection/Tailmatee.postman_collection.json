@@ -42,6 +42,40 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"name\": \"Jorge\",\r\n    \"lastname\": \"Revolorio\",\r\n    \"username\": \"jrevolorio\",\r\n    \"birthdate\": \"12-04-2005\",\r\n    \"gender\": \"male\",\r\n    \"email\": \"jorge@gmail.com\",\r\n    \"password\": \"12Abril2005!\",\r\n    \"phone\": \"49483571\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3005/tailmatee/v1/auth/register",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3005",
+							"path": [
+								"tailmatee",
+								"v1",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}
