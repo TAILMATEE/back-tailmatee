@@ -12,8 +12,10 @@ import { dbConnection } from './mongo.js'
 import {adminCredentials} from './defaultCredentials.js'
 
 import TailUser from '../src/tailUser/tailUser.model.js';
+import TailFriend from '../src/tailFriend/tailFriend.routes.js';
 
 import authRoutes from '../src/auth/auth.routes.js';
+import fileUpload from 'express-fileupload'
 
 class Server {
     constructor(){
@@ -22,6 +24,7 @@ class Server {
         this.port = process.env.PORT
 
         this.authPath = '/tailmatee/v1/auth'
+        this.tailFriendPath = '/tailmatee/v1/tailFriend'
 
         this.middlewares();
         this.connectDB();
@@ -52,6 +55,8 @@ class Server {
     }
 
     async middlewares(){
+        this.app.use(fileUpload())
+        this.app.use(express.urlencoded({extended:true}))
         this.app.use(apiLimiter)
         this.app.use(cors())
         this.app.use(express.json())
@@ -65,6 +70,7 @@ class Server {
     routes(){
 
         this.app.use(this.authPath, authRoutes);
+        this.app.use(this.tailFriendPath, TailFriend);
 
     }
 

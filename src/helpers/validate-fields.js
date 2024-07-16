@@ -138,3 +138,15 @@ export const validateBirthDate = async (birthdate = "") => {
   }
 
 }
+
+export const validateGender = async( gender="")=>{
+  if(gender!= 'FEMALE' && gender != 'MALE'){
+    throw new Error("The gender must be FEMALE or MALE");
+  }
+}
+
+export const validateStatusTailFriend = async (status = "") => {
+  if(status!= 'ADOPTED' && status != 'FOR-ADOPTION' && status != 'LOST' && status != 'DEAD'){
+    throw new Error("The status must be ADOPTED, FOR-ADOPTION, LOST or DEAD");
+  }
+}
