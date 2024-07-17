@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "e0e86719-22ef-4baa-8027-e89c16a6a1d0",
+		"_postman_id": "e45d2fae-4279-4460-af77-32d7bb3c0205",
 		"name": "Tailmatee",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "32787267"
+		"_exporter_id": "32786726"
 	},
 	"item": [
 		{
@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"usernameOrEmail\": \"adminb@gmail.com\"/*\"ADMINB\"*/,\r\n    \"password\": \"ADMINB\"\r\n}",
+							"raw": "{\r\n    \"usernameOrEmail\": /*\"adminb@gmail.com\"*/\"ADMINB\",\r\n    \"password\": \"ADMINB\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -72,6 +72,231 @@
 								"v1",
 								"auth",
 								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "TailFriend",
+			"item": [
+				{
+					"name": "PostTailFriend",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NjhkYzVhYjZjNzAxOTk0MmMzOWQxN2QiLCJpYXQiOjE3MjExNjIyNjgsImV4cCI6MTcyMTE3MzA2OH0.VYtRygV2U6aNqIUbXqySxbhDkMS1ILM87hPhlZaawuY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "imgProfile",
+									"type": "file",
+									"src": "/C:/Users/bryan/Documents/Foto Demetrio.jpg"
+								},
+								{
+									"key": "name",
+									"value": "holas",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "ADOPTED",
+									"type": "text"
+								},
+								{
+									"key": "race",
+									"value": "perro",
+									"type": "text"
+								},
+								{
+									"key": "gender",
+									"value": "MALE",
+									"type": "text"
+								},
+								{
+									"key": "birthdate",
+									"value": "2005/07/16",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "perro",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "este perro es nuevo",
+									"type": "text"
+								},
+								{
+									"key": "specie",
+									"value": "perro",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3005/tailmatee/v1/tailFriend",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3005",
+							"path": [
+								"tailmatee",
+								"v1",
+								"tailFriend"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PutTailFriend",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NjhkYzVhYjZjNzAxOTk0MmMzOWQxN2QiLCJpYXQiOjE3MjExOTAwNTUsImV4cCI6MTcyMTIwMDg1NX0.SN6IPorRrw9Nw4Q_ci2UeqZiOgsU2hcU7-UL0f92dTY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "birthdate",
+									"value": "2008/1/18",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "este es my perrito",
+									"type": "text"
+								},
+								{
+									"key": "usernameTailFriend",
+									"value": "holas",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "ADOPTED",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3005/tailmatee/v1/tailFriend",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3005",
+							"path": [
+								"tailmatee",
+								"v1",
+								"tailFriend"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetTailfriend",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NjhkYzVhYjZjNzAxOTk0MmMzOWQxN2QiLCJpYXQiOjE3MjExOTAwNTUsImV4cCI6MTcyMTIwMDg1NX0.SN6IPorRrw9Nw4Q_ci2UeqZiOgsU2hcU7-UL0f92dTY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"holas\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3005/tailmatee/v1/tailFriend",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3005",
+							"path": [
+								"tailmatee",
+								"v1",
+								"tailFriend"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetTailfriends",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NjhkYzVhYjZjNzAxOTk0MmMzOWQxN2QiLCJpYXQiOjE3MjExOTAwNTUsImV4cCI6MTcyMTIwMDg1NX0.SN6IPorRrw9Nw4Q_ci2UeqZiOgsU2hcU7-UL0f92dTY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3005/tailmatee/v1/tailFriend/tailFriends",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3005",
+							"path": [
+								"tailmatee",
+								"v1",
+								"tailFriend",
+								"tailFriends"
 							]
 						}
 					},
