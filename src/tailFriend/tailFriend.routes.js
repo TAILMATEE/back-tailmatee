@@ -1,9 +1,9 @@
 'use strict';
 
 import {Router} from 'express'
-import {validateFields} from '../middlewares/validate-fields.js'
+import {validateFields, validateUsernameTailFriend} from '../middlewares/validate-fields.js'
 import {validateJWT} from '../middlewares/validate-jwt.js'
-import { postTailFriend } from './tailFriend.controller.js';
+import { postTailFriend, putTailFriend } from './tailFriend.controller.js';
 import { check } from 'express-validator';
 import { validateGender,validateStatusTailFriend } from '../helpers/validate-fields.js';
 
@@ -22,5 +22,10 @@ router.post('/',
     check('status').custom(validateStatusTailFriend),
     validateFields,
 ], postTailFriend);
+
+router.put('/:id',[
+    validateJWT,
+    check('usernameTailFriend').custom(validateUsernameTailFriend)
+],putTailFriend)
 
 export default router;
