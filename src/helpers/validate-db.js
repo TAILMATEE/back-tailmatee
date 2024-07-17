@@ -1,5 +1,5 @@
 import TailUser from '../tailUser/tailUser.model.js'
-
+import TailFriend from '../tailFriend/tailFriend.model.js';
 import ValidationTailUser from '../generalValidation/validationTailUser.model.js'
 
 export const existentUsername = async (username = "") => {
@@ -32,11 +32,20 @@ export const existentEmail = async (email = "") => {
 
 }
 
-export const existTailFriend = async (usernameTailFriend = "") => {
-
-  const tailFriend = await TailUser.findOne({ username: usernameTailFriend });
-
-  if (!tailFriend) {
-    throw new Error(`The TailFriend ${usernameTailFriend} doesn't exists`);
+export const validateMyTailFriend = async(req,res,next)=>{
+  const {_id,username} = req.tailUser;
+  const {usernameTailFriend} = req.body;
+  const tailFriend = await TailFriend.findOne({username:`${username}/${usernameTailFriend}`});
+  if(!tailFriend){
+    return res.status(400).json({
+      msg: "Do not have a tailFriend with this username"
+    })
+  }else{
+    if(tailFriend.tailOwner.toString() !== _id.toString()){
+      return res.status(401).json({
+        msg: "You don't have permissions"
+      })
+    }
   }
+  next();
 }

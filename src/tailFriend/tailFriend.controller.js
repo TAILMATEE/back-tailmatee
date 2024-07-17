@@ -45,15 +45,32 @@ export const postTailFriend = async (req, res) => {
         tailFriend.imgProfile = imgUrl;
     }
 
-    //await tailFriend.save();
+    await tailFriend.save();
     res.status(200).json({
         msg: "TailFriend Created",
     })
 }
 
 export const putTailFriend = async (req, res) => {
-    const {__v,_id, username,...tailFriendData } = req.body;
-    const usernameLogged= req.tailUser.username;
-    const tailFriend = await TailFriend.findOne({username:`${usernameLogged}/${tailFriendData.usernameTailFriend}`});
-     
+    const { __v, _id, username,age, ...tailFriendData } = req.body;
+    const usernameLogged = req.tailUser.username;
+    if(tailFriendData.birthdate){
+        tailFriendData.age = calculatedAge(new Date(tailFriendData.birthdate));
+    }
+    await TailFriend.findOneAndUpdate({username: `${usernameLogged}/${tailFriendData.usernameTailFriend}`}, tailFriendData);
+    res.status(200).json({  
+        msg: "TailFriend Updated"
+    });
+}
+
+export const getTailFriend = async (req, res) => {
+    const { username } = req.body;
+    const tailFriend = await TailFriend.findOne({username: `${req.tailUser.username}/${username}`});
+    res.status(200).json(tailFriend);
+}
+
+export const getTailFriends = async (req, res) => {
+    const {_id} = req.tailUser;
+    const tailFriends = await TailFriend.find({tailOwner: _id});
+    res.status(200).json(tailFriends);
 }

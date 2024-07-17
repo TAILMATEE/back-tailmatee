@@ -3,9 +3,10 @@
 import {Router} from 'express'
 import {validateFields, validateUsernameTailFriend} from '../middlewares/validate-fields.js'
 import {validateJWT} from '../middlewares/validate-jwt.js'
-import { postTailFriend, putTailFriend } from './tailFriend.controller.js';
+import { getTailFriend, getTailFriends, postTailFriend, putTailFriend } from './tailFriend.controller.js';
 import { check } from 'express-validator';
 import { validateGender,validateStatusTailFriend } from '../helpers/validate-fields.js';
+import { validateMyTailFriend } from '../helpers/validate-db.js';
 
 const router = Router()
 
@@ -23,9 +24,18 @@ router.post('/',
     validateFields,
 ], postTailFriend);
 
-router.put('/:id',[
+router.put('/',[
     validateJWT,
-    check('usernameTailFriend').custom(validateUsernameTailFriend)
+    validateUsernameTailFriend,
+    validateMyTailFriend,
 ],putTailFriend)
+
+router.get('/',[
+    validateJWT,
+],getTailFriend)
+
+router.get('/tailFriends',[
+    validateJWT,
+],getTailFriends)
 
 export default router;
