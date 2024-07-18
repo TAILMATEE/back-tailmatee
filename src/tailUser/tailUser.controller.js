@@ -4,6 +4,8 @@ import { withoutTime } from '../../configs/defaultCredentials.js';
 
 import { calculateAge } from '../auth/auth.controller.js'
 
+import {uploadImageToImgBB} from '../helpers/upload-image.js';
+
 export const updateTailUser = async (req, res) => {
 
     const { _id, age, imgProfile, role, typeAccount, status, __v, ...rest} = req.body;
@@ -116,6 +118,36 @@ export const getAllTailUserRoleFilter = async (req, res) => {
         msg: `The ${total} ${role} are:`,
         tailUser
     });
+
+}
+
+export const editImageProfile = async (req, res) => {
+
+    if(req.files){
+
+        const imgProfile = req.files.imgProfile;
+
+        const result = await uploadImageToImgBB(imgProfile);
+
+        const saveImage = await TailUser.findOneAndUpdate({ _id: req.tailUser._id }, { imgProfile: result });
+
+        saveImage.save();
+
+        res.status(200).json({
+
+            msg: `${req.tailUser.username} your image was updated`,
+
+        });
+
+    }else{
+
+        res.status(400).json({
+
+            msg: 'Image not found'
+
+        })
+
+    }
 
 }
 
