@@ -80,3 +80,41 @@ export const getTailUserProfile = async (req, res) => {
     });
 
 }
+
+export const getAllTailUser = async (req, res) => {
+
+    const { limit, from } = req.query;
+
+    const query = {$or:[{ role: 'tailUser', status: 'active' }, { role: 'tailHouse', status: 'active' }]};
+
+    const [total, tailUser] = await Promise.all([
+        TailUser.countDocuments(query),
+        TailUser.find(query).skip(Number(from)).limit(Number(limit)),
+      ]);
+    
+    res.status(200).json({
+        msg: `The ${total} tailUsers and tailHouses are:`,
+        tailUser
+    });
+
+}
+
+export const getAllTailUserRoleFilter = async (req, res) => {
+
+    const { limit, from } = req.query;
+
+    const { role } = req.params;
+
+    const query = { role: role };
+
+    const [total, tailUser] = await Promise.all([
+        TailUser.countDocuments(query),
+        TailUser.find(query).skip(Number(from)).limit(Number(limit)),
+      ]);
+    
+    res.status(200).json({
+        msg: `The ${total} ${role} are:`,
+        tailUser
+    });
+
+}

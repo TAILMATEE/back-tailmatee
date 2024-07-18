@@ -8,7 +8,9 @@ import {
 
     updateTailUser,
     getOwnTailUser,
-    getTailUserProfile
+    getTailUserProfile,
+    getAllTailUser,
+    getAllTailUserRoleFilter
 
 } from './tailUser.controller.js';
 
@@ -18,7 +20,7 @@ import { validateJWT } from '../middlewares/validate-jwt.js';
 
 import { haveRol } from '../middlewares/validate-role.js';
 
-import { validateTailUser_Username } from '../middlewares/validate-Get.js';
+import { validateTailUser_Username, validateTailUser_Role } from '../middlewares/validate-Get.js';
 
 const router = Router();
 
@@ -68,6 +70,38 @@ router.get(
         validateFields
 
     ], getTailUserProfile
+
+)
+
+router.get(
+
+    '/',
+    [
+
+        validateJWT,
+
+        haveRol('tailUser', 'tailAdmin', 'tailHouse', 'tailSupport'),
+
+        validateFields
+
+    ],getAllTailUser
+
+)
+
+router.get(
+
+    "/filter/:role",
+    [
+
+        validateJWT,
+
+        haveRol('tailUser', 'tailAdmin', 'tailHouse', 'tailSupport'),
+
+        validateTailUser_Role,
+
+        validateFields
+
+    ], getAllTailUserRoleFilter
 
 )
 
