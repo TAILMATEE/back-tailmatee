@@ -15,6 +15,7 @@ import TailUser from '../src/tailUser/tailUser.model.js';
 import TailFriend from '../src/tailFriend/tailFriend.routes.js';
 
 import authRoutes from '../src/auth/auth.routes.js';
+import tailUserRoutes from '../src/tailUser/tailUser.routes.js';
 import fileUpload from 'express-fileupload'
 
 class Server {
@@ -25,6 +26,8 @@ class Server {
 
         this.authPath = '/tailmatee/v1/auth'
         this.tailFriendPath = '/tailmatee/v1/tailFriend'
+
+        this.tailUserPath = '/tailmatee/v1/tailUser'
 
         this.middlewares();
         this.connectDB();
@@ -71,6 +74,8 @@ class Server {
 
         this.app.use(this.authPath, authRoutes);
         this.app.use(this.tailFriendPath, TailFriend);
+
+        this.app.use(this.tailUserPath, tailUserRoutes);
 
     }
 
