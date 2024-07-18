@@ -10,7 +10,8 @@ import {
     getOwnTailUser,
     getTailUserProfile,
     getAllTailUser,
-    getAllTailUserRoleFilter
+    getAllTailUserRoleFilter,
+    disabledAccount
 
 } from './tailUser.controller.js';
 
@@ -102,6 +103,23 @@ router.get(
         validateFields
 
     ], getAllTailUserRoleFilter
+
+)
+
+router.delete(
+
+    '/',
+    [
+
+        validateJWT,
+
+        haveRol('tailUser', 'tailHouse'),
+
+        check('confirmation', 'Confirmation is required').not().isEmpty(),
+
+        validateFields
+
+    ], disabledAccount
 
 )
 

@@ -118,3 +118,29 @@ export const getAllTailUserRoleFilter = async (req, res) => {
     });
 
 }
+
+export const disabledAccount = async (req, res) => {
+
+    const { confirmation } = req.body;
+
+    if(confirmation.toUpperCase() === 'YES'){
+
+        await TailUser.findOneAndUpdate({ _id: req.tailUser._id }, { status: 'inactive' });
+
+        res.status(200).json({ 
+
+            msg: `${req.tailUser.username} your account was disabled`
+
+        });
+
+    }else{
+
+        res.status(200).json({
+
+            msg: `Disabled process canceled`,
+
+        });
+
+    }
+
+}
