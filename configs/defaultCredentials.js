@@ -2,6 +2,8 @@ import TailUser from '../src/tailUser/tailUser.model.js';
 
 import ValidationTailUser from '../src/generalValidation/validationTailUser.model.js';
 
+import validationDenoucement from '../src/generalValidation/validationDenoucement.js';
+
 import bcryptjs from 'bcryptjs';
 
 import { format , parse } from 'date-fns';
@@ -191,6 +193,32 @@ export const adminCredentials = async () => {
     await inactive.save();
 
     await blocked.save();
+
+    const denoucement_in_progress = new validationDenoucement({
+
+        status: 'in-progress'
+
+    })
+
+    const denoucement_done = new validationDenoucement({
+
+        status: 'done'
+
+    })
+
+    const denoucement_fake = new validationDenoucement({
+
+        status: 'fake'
+
+    })
+
+    await denoucement_in_progress.save();
+
+    await denoucement_done.save();
+
+    await denoucement_fake.save();
+
+    
 
     console.log('Admin Credentials Created');
 
