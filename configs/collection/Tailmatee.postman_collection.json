@@ -1,0 +1,327 @@
+{
+	"info": {
+		"_postman_id": "e0e86719-22ef-4baa-8027-e89c16a6a1d0",
+		"name": "Tailmatee",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32787267"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    /*\"usernameOrEmail\": \"adminb@gmail.com\",\r\n    \"password\": \"ADMINB\"*/\r\n\r\n    \"usernameOrEmail\": \"jrevolorio\",\r\n    \"password\": \"12Abril2005!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3005/tailmatee/v1/auth/login",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3005",
+							"path": [
+								"tailmatee",
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"name\": \"Jorge\",\r\n    \"lastname\": \"Revolorio\",\r\n    \"username\": \"jrevolorio\",\r\n    \"birthdate\": \"04-12-2005\",\r\n    \"gender\": \"male\",\r\n    \"email\": \"jorge@gmail.com\",\r\n    \"password\": \"12Abril2005!\",\r\n    \"phone\": \"49483571\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3005/tailmatee/v1/auth/register",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3005",
+							"path": [
+								"tailmatee",
+								"v1",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "tailUser",
+			"item": [
+				{
+					"name": "update tailUser",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2Njk4NThhYTk0NzFlNWNlMDgyNDA2NDkiLCJpYXQiOjE3MjEyNzE1MjMsImV4cCI6MTcyMTI4MjMyM30.doC5BPM6tIoXO6sr8g6SbyYehznKcPYTIKryDAf2ixM",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"birthdate\": \"32-12-2005\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3005/tailmatee/v1/tailUser/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3005",
+							"path": [
+								"tailmatee",
+								"v1",
+								"tailUser",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List ownUser",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2Njk4NThhYTk0NzFlNWNlMDgyNDA2NDkiLCJpYXQiOjE3MjEyNjQyMjIsImV4cCI6MTcyMTI3NTAyMn0.nXoDR5dzr8NsACQIzif9qipAwOg6ZN9OZosFR6vSMDg",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:3005/tailmatee/v1/tailUser/ownProfile",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3005",
+							"path": [
+								"tailmatee",
+								"v1",
+								"tailUser",
+								"ownProfile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List tailUser",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2Njk4NThhYTk0NzFlNWNlMDgyNDA2NDkiLCJpYXQiOjE3MjEyNzE1MjMsImV4cCI6MTcyMTI4MjMyM30.doC5BPM6tIoXO6sr8g6SbyYehznKcPYTIKryDAf2ixM",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:3005/tailmatee/v1/tailUser/jrevolorio",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3005",
+							"path": [
+								"tailmatee",
+								"v1",
+								"tailUser",
+								"jrevolorio"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List All tailUser",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2Njk4NThhYTk0NzFlNWNlMDgyNDA2NDkiLCJpYXQiOjE3MjEyNjQyMjIsImV4cCI6MTcyMTI3NTAyMn0.nXoDR5dzr8NsACQIzif9qipAwOg6ZN9OZosFR6vSMDg",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:3005/tailmatee/v1/tailUser/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3005",
+							"path": [
+								"tailmatee",
+								"v1",
+								"tailUser",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List tailUser Filter",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2Njk4NThhYTk0NzFlNWNlMDgyNDA2NDkiLCJpYXQiOjE3MjEyNjQyMjIsImV4cCI6MTcyMTI3NTAyMn0.nXoDR5dzr8NsACQIzif9qipAwOg6ZN9OZosFR6vSMDg",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:3005/tailmatee/v1/tailUser/filter/tailUser",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3005",
+							"path": [
+								"tailmatee",
+								"v1",
+								"tailUser",
+								"filter",
+								"tailUser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Disable TailUser",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2Njk4NThhYTk0NzFlNWNlMDgyNDA2NDkiLCJpYXQiOjE3MjEyNjQyMjIsImV4cCI6MTcyMTI3NTAyMn0.nXoDR5dzr8NsACQIzif9qipAwOg6ZN9OZosFR6vSMDg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"confirmation\": \"yes\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3005/tailmatee/v1/tailUser",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3005",
+							"path": [
+								"tailmatee",
+								"v1",
+								"tailUser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Image",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2Njk4NThhYTk0NzFlNWNlMDgyNDA2NDkiLCJpYXQiOjE3MjEyNzg1OTAsImV4cCI6MTcyMTI4OTM5MH0.iHscSYgd6s11ZVgI1AUn-nfO_1kUYc7-xkTKRKtN6Cc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3005/tailmatee/v1/tailUser/saveImgProfile",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3005",
+							"path": [
+								"tailmatee",
+								"v1",
+								"tailUser",
+								"saveImgProfile"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
