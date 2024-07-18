@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import TailUser from '../src/tailUser/tailUser.model.js';
+import TailUser from '../tailUser/tailUser.model.js';
 
 export const validateJWT = async (req, res, next) => {
     const token = req.header("Authorization");

@@ -14,6 +14,7 @@ import {adminCredentials} from './defaultCredentials.js'
 import TailUser from '../src/tailUser/tailUser.model.js';
 
 import authRoutes from '../src/auth/auth.routes.js';
+import tailUserRoutes from '../src/tailUser/tailUser.routes.js';
 
 class Server {
     constructor(){
@@ -22,6 +23,8 @@ class Server {
         this.port = process.env.PORT
 
         this.authPath = '/tailmatee/v1/auth'
+
+        this.tailUserPath = '/tailmatee/v1/tailUser'
 
         this.middlewares();
         this.connectDB();
@@ -65,6 +68,8 @@ class Server {
     routes(){
 
         this.app.use(this.authPath, authRoutes);
+
+        this.app.use(this.tailUserPath, tailUserRoutes);
 
     }
 
