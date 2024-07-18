@@ -41,6 +41,42 @@ export const updateTailUser = async (req, res) => {
 
     })
 
+}
 
+export const getOwnTailUser = async (req, res) => {
+
+    const { limit, from } = req.query;
+
+  const query = { _id: req.tailUser._id };
+
+  const [total, tailUser] = await Promise.all([
+    TailUser.countDocuments(query),
+    TailUser.find(query).skip(Number(from)).limit(Number(limit)),
+  ]);
+
+  res.status(200).json({
+    msg: `${req.tailUser.username} your profile is:`,
+    tailUser,
+  });
+
+}
+
+export const getTailUserProfile = async (req, res) => {
+
+    const { limit, from } = req.query;
+
+    const { username } = req.params;
+
+    const  query = { username: username };
+
+    const [total, tailUser] = await Promise.all([
+        TailUser.countDocuments(query),
+        TailUser.find(query).skip(Number(from)).limit(Number(limit)),
+      ]);
+    
+    res.status(200).json({
+        msg: `${req.tailUser.username} the profile ${username} is:`,
+        tailUser,
+    });
 
 }
