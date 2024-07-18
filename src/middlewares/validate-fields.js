@@ -12,7 +12,6 @@ export const validateFields = (req, res, next) => {
 
 export const validateUsernameTailFriend = async (req,res,next) => {
   const { usernameTailFriend } = req.body;
-  console.log(usernameTailFriend)
   if(!usernameTailFriend || usernameTailFriend==''){
     return res.status(400).json({
       msg: 'Username of Tail Friend is required'

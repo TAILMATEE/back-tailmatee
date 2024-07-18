@@ -13,6 +13,7 @@ import {adminCredentials} from './defaultCredentials.js'
 
 import TailUser from '../src/tailUser/tailUser.model.js';
 import TailFriend from '../src/tailFriend/tailFriend.routes.js';
+import Adoption from '../src/adoption/adoption.routes.js';
 
 import authRoutes from '../src/auth/auth.routes.js';
 import tailUserRoutes from '../src/tailUser/tailUser.routes.js';
@@ -26,7 +27,7 @@ class Server {
 
         this.authPath = '/tailmatee/v1/auth'
         this.tailFriendPath = '/tailmatee/v1/tailFriend'
-
+        this.adoptionPath = '/tailmatee/v1/adoption'
         this.tailUserPath = '/tailmatee/v1/tailUser'
 
         this.middlewares();
@@ -74,7 +75,8 @@ class Server {
 
         this.app.use(this.authPath, authRoutes);
         this.app.use(this.tailFriendPath, TailFriend);
-
+        this.app.use(this.adoptionPath, Adoption);
+        
         this.app.use(this.tailUserPath, tailUserRoutes);
 
     }

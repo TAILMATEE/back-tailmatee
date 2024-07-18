@@ -49,3 +49,10 @@ export const validateMyTailFriend = async(req,res,next)=>{
   }
   next();
 }
+
+export const validateExistsTailFriend = async (usernameTailFriend = "") => {
+  const tailFriend = await TailFriend.findOne({ username: usernameTailFriend });
+  if (!tailFriend) {
+    throw new Error(`The Username ${usernameTailFriend} doesn't exists`);
+  }
+}
