@@ -1,4 +1,4 @@
-export { dateWithTime } from '../post/post.controller.js';
+export { dateWithTime } from '../denoucement/denoucement.controller.js';
 
 import Comment from './comment.model.js';
 

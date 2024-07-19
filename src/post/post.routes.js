@@ -10,7 +10,7 @@ import {
 
     getPosts
 
-} from './post.controller.js';
+} from './post.controller.js'
 
 import { validateJWT } from '../middlewares/validate-jwt.js';
 

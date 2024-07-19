@@ -46,7 +46,7 @@ export const createPost = async (req, res) => {
 
 }
 
-export const getPost = async (req, res) => {
+export const getPosts = async (req, res) => {
     
     const { limit, from } = req.query;
 
