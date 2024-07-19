@@ -10,7 +10,7 @@ const AdoptionSchema = Schema({
     },
     civilStatus: {
         type: String,
-        enum: ['MARRIED','SINGLE','DIVORCIED','WIDOWER'],
+        enum: ['MARRIED','SINGLE','DIVORCED','WIDOWER'],
         required: [true, 'Civil status is required'],
     },
     whyAdopt: {
@@ -66,7 +66,7 @@ const AdoptionSchema = Schema({
     usernameTailFriend:{
         type: String,
         required: [true, 'Username Tail Friend is required'],
-    }
+    },
 })
 
 AdoptionSchema.methods.toJSON = function(){

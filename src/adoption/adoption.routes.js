@@ -6,6 +6,7 @@ import { check } from 'express-validator';
 import { validateFields, validateUsernameTailFriend } from '../middlewares/validate-fields.js';
 import { validateExistsTailFriend } from '../helpers/validate-db.js';
 import { haveRol } from '../middlewares/validate-role.js';
+
 const router = Router();
 
 router.post('/form',[
