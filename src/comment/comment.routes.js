@@ -6,17 +6,15 @@ import { validateFields } from '../middlewares/validate-fields.js';
 
 import {
 
-    createPost,
+    createComment,
 
-    getPosts
+    getComments
 
-} from './post.controller.js';
+} from './comment.controller.js';
 
 import { validateJWT } from '../middlewares/validate-jwt.js';
 
 import { haveRol } from '../middlewares/validate-role.js';
-
-import { validateTailFriend } from '../helpers/validate-db.js';
 
 const router = Router();
 
@@ -30,23 +28,19 @@ router.post(
 
         haveRol('tailUser', 'tailAdmin', 'tailHouse', 'tailSupport'),
 
-        check('text', 'Text is required').not().isEmpty(),
-
         check('date', 'Date is required').not().isEmpty(),
 
-        check('tailFriend', 'TailFriend is required').not().isEmpty(),
+        check('text', 'Text is required').not().isEmpty(),
 
-        check('tailFriend').custom(validateTailFriend),
+        check('idPost', 'IdPost is required').not().isEmpty(),
 
-        validateFields
-        
-    ], createPost
+        validateFields,
 
-)
+    ], createComment
 
-router.get(
+);
 
-    '/',
+router.get('/',
 
     [
 
@@ -56,8 +50,10 @@ router.get(
 
         validateFields
 
-    ], getPosts
+    ], getComments
 
-)
+);
+
+
 
 export default router;
