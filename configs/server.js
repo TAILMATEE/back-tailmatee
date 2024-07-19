@@ -15,6 +15,7 @@ import TailUser from '../src/tailUser/tailUser.model.js';
 import TailFriend from '../src/tailFriend/tailFriend.routes.js';
 import Adoption from '../src/adoption/adoption.routes.js';
 import TailHousePetitionRoutes from '../src/tailHousePetitions/tailHousePetition.routes.js';
+import TailHouseRoutes from '../src/TailHouse/tailHouse.routes.js';
 
 import authRoutes from '../src/auth/auth.routes.js';
 import tailUserRoutes from '../src/tailUser/tailUser.routes.js';
@@ -33,6 +34,7 @@ class Server {
         this.adoptionPath = '/tailmatee/v1/adoption'
         this.tailUserPath = '/tailmatee/v1/tailUser'
         this.tailHousePetitionPath = '/tailmatee/v1/TailHousePetition';
+        this.tailHousePath = '/tailmatee/v1/TailHouse';
 
         this.denoucementPath = '/tailmatee/v1/denoucement'
 
@@ -83,7 +85,7 @@ class Server {
         this.app.use(this.tailFriendPath, TailFriend);
         this.app.use(this.adoptionPath, Adoption);
         this.app.use(this.tailHousePetitionPath, TailHousePetitionRoutes);
-
+        this.app.use(this.tailHousePath, TailHouseRoutes);
         this.app.use(this.tailUserPath, tailUserRoutes);
 
         this.app.use(this.denoucementPath, denoucementRoutes);
