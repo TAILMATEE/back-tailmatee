@@ -2,6 +2,8 @@ import TailUser from '../src/tailUser/tailUser.model.js';
 
 import ValidationTailUser from '../src/generalValidation/validationTailUser.model.js';
 
+import validationDenoucement from '../src/generalValidation/validationDenoucement.js';
+
 import bcryptjs from 'bcryptjs';
 
 import { format , parse } from 'date-fns';
@@ -10,7 +12,7 @@ import { calculateAge } from '../src/auth/auth.controller.js'
 
 export const withoutTime = (date) =>{
 
-    const parseDate = parse(date, 'MM-dd-yyyy', new Date()); // Format to received Postman
+    const parseDate = parse(date, 'MM/dd/yyyy', new Date()); // Format to received Postman
 
     parseDate.setUTCHours(0, 0, 0, 0);
 
@@ -22,7 +24,7 @@ export const withoutTime = (date) =>{
 
 export const adminCredentials = async () => {
 
-    const bds = '12-04-2005';
+    const bds = '12/04/2005';
 
     const formatDate = withoutTime(bds);
 
@@ -191,6 +193,32 @@ export const adminCredentials = async () => {
     await inactive.save();
 
     await blocked.save();
+
+    const denoucement_in_progress = new validationDenoucement({
+
+        status: 'in-progress'
+
+    })
+
+    const denoucement_done = new validationDenoucement({
+
+        status: 'done'
+
+    })
+
+    const denoucement_fake = new validationDenoucement({
+
+        status: 'fake'
+
+    })
+
+    await denoucement_in_progress.save();
+
+    await denoucement_done.save();
+
+    await denoucement_fake.save();
+
+    
 
     console.log('Admin Credentials Created');
 
