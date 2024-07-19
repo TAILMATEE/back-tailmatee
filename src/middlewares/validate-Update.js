@@ -25,63 +25,39 @@ import {
 
 export const validateUpdateTailUser = async (req, res, next) => {
     
-    switch (true) {
-
-        case req.body.name != null:
-
-            await check("name").custom(maxCharactersName).run(req);
-
-            break;
-    
-        case req.body.lastname != null:
-
-            await check("lastname").custom(maxCharactersLastname).run(req);
-
-            break;
-    
-        case req.body.username != null:
-
-            await check("username").custom(existentUsername).run(req);
-            
-            await check("username").custom(maxCharactersUsername).run(req);
-            
-            break;
-    
-        case req.body.birthdate != null:
-            
-            await check("birthdate").custom(validYear).run(req);
-            
-            await check("birthdate").custom(validMonth).run(req);
-            
-            await check("birthdate").custom(validDate).run(req);
-            
-            await check("birthdate").custom(validateBirthDate).run(req);
-            
-            break;
-    
-        case req.body.gender != null:
-            
-            await check("gender").custom(existentGender).run(req);
-            
-            break;
-    
-        case req.body.email != null:
-            
-            await check("email").custom(existentEmail).run(req);
-            
-            break;
-    
-        case req.body.password != null:
-            
-            await check("password").custom(validationPassword).run(req);
-            
-            break;
-    
-        default:
-            
-            break;
+    if (req.body.name != null) {
+        await check("name").custom(maxCharactersName).run(req);
     }
-
+    
+    if (req.body.lastname != null) {
+        await check("lastname").custom(maxCharactersLastname).run(req);
+    }
+    
+    if (req.body.username != null) {
+        await check("username").custom(existentUsername).run(req);
+        await check("username").custom(maxCharactersUsername).run(req);
+    }
+    
+    if (req.body.birthdate != null) {
+        await check("birthdate").custom(validYear).run(req);
+        await check("birthdate").custom(validMonth).run(req);
+        await check("birthdate").custom(validDate).run(req);
+        await check("birthdate").custom(validateBirthDate).run(req);
+    }
+    
+    if (req.body.gender != null && req.body.gender != "") {
+        await check("gender").custom(existentGender).run(req);
+        console.log('porque entraste!!!');
+    }
+    
+    if (req.body.email != null) {
+        await check("email").custom(existentEmail).run(req);
+    }
+    
+    if (req.body.password != null) {
+        await check("password").custom(validationPassword).run(req);
+    }
+    
     next();
 
     (req, res, next) => {

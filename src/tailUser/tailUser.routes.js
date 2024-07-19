@@ -11,7 +11,8 @@ import {
     getTailUserProfile,
     getAllTailUser,
     getAllTailUserRoleFilter,
-    disabledAccount
+    disabledAccount,
+    editImageProfile
 
 } from './tailUser.controller.js';
 
@@ -39,6 +40,21 @@ router.put(
         validateFields
 
     ], updateTailUser
+
+)
+
+router.put(
+
+    '/saveImgProfile',
+    [
+
+        validateJWT,
+
+        haveRol('tailUser', 'tailAdmin', 'tailHouse', 'tailSupport'),
+
+        validateFields
+
+    ],editImageProfile
 
 )
 

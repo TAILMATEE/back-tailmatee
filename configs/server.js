@@ -20,6 +20,8 @@ import authRoutes from '../src/auth/auth.routes.js';
 import tailUserRoutes from '../src/tailUser/tailUser.routes.js';
 import fileUpload from 'express-fileupload'
 
+import denoucementRoutes from '../src/denoucement/denoucement.routes.js';
+
 class Server {
     constructor(){
 
@@ -31,6 +33,8 @@ class Server {
         this.adoptionPath = '/tailmatee/v1/adoption'
         this.tailUserPath = '/tailmatee/v1/tailUser'
         this.tailHousePetitionPath = '/tailmatee/v1/TailHousePetition';
+
+        this.denoucementPath = '/tailmatee/v1/denoucement'
 
         this.middlewares();
         this.connectDB();
@@ -81,6 +85,8 @@ class Server {
         this.app.use(this.tailHousePetitionPath, TailHousePetitionRoutes);
 
         this.app.use(this.tailUserPath, tailUserRoutes);
+
+        this.app.use(this.denoucementPath, denoucementRoutes);
 
     }
 
