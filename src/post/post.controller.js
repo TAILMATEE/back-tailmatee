@@ -15,11 +15,20 @@ export const createPost = async (req, res) => {
             dateAndTime,
             text,
             img,
-            tailUser: req.tailUser.username,
+            tailCreator: req.tailUser.username,
             tailFriend,
             likes: 0
     
         })
+
+        await newPost.save();
+
+        res.status(200).json({
+
+            msg: 'Post created successfully',
+            newPost
+
+        });
 
     }else{
 
@@ -27,22 +36,22 @@ export const createPost = async (req, res) => {
 
             dateAndTime,
             text,
-            tailUser: req.tailUser.username,
+            tailCreator: req.tailUser.username,
             tailFriend,
             likes: 0
     
         })
 
+        await newPost.save();
+
+        res.status(200).json({
+
+            msg: 'Post created successfully',
+            newPost
+
+        });
+
     }
-
-    await newPost.save();
-
-    res.status(200).json({
-
-        msg: 'Post created successfully',
-        newPost
-
-    })
 
 }
 
