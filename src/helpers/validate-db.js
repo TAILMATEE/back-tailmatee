@@ -70,6 +70,18 @@ export const validateIdDenoucement = async (_id = 0) => {
   }
 }
 
+export const validateTailFriend = async (tailFriend = '') =>{
+
+  const foundTailFriend = await TailFriend.findOne({username: tailFriend});
+
+  if(!foundTailFriend){
+
+    throw new Error(`The TailFriend ${tailFriend} doesn't exists`);
+
+  }
+
+}
+
 export const validateTailHouse = async (idTailHouse = '') => {
   const tailHouse = await TailHouse.findById(idTailHouse);
   if (!tailHouse) {
