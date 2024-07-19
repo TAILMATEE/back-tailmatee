@@ -2,6 +2,8 @@ import Post from './post.model.js';
 
 import { dateWithTime } from '../denoucement/denoucement.controller.js';
 
+import { uploadImageToImgBB } from '../helpers/upload-image.js';
+
 export const createPost = async (req, res) => {
 
     const { date, text, img, tailFriend } = req.body;
@@ -10,11 +12,15 @@ export const createPost = async (req, res) => {
 
     if(img != null || img != ""){
 
+        const imgPost = req.files.img;
+
+        const result = await uploadImageToImgBB(imgPost);
+
         const newPost = new Post({
 
             dateAndTime,
             text,
-            img,
+            img: result,
             tailCreator: req.tailUser.username,
             tailFriend,
             likes: 0
