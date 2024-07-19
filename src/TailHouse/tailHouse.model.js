@@ -3,39 +3,53 @@ import { Schema, model } from 'mongoose'
 const TailHouseSchema = Schema({
     nameTailHouse: {
         type: String,
-        required: [true, 'Name TailHouse is required'],
+        default: '',
     },
     nameManager:{
         type: String,
+        default: '',
     },
     address: {
         type: String,
-        required: [true, 'Address is required'],
+        default: '',
     },
     phone: {
         type: String,
-        required: [true, 'Phone is required'],
+        default: '',
     },
     email: {
         type: String,
+        default: '',
     },
     description: {
         type: String,
+        default:'',
     },
     imgProfile: {
         type: String,
+        default: '',
     },
     imgBanner: {
         type: String,
+        default:'',
     },
     verify: {
         type: String,
         enum: ['verified', 'unverified'],
+        default: 'unverified',
     },
     status: {
         type: String,
         enum: ['active', 'inactive'],
         default: 'active',
+    },
+    tailUsers:{
+        type: [Schema.Types.ObjectId],
+        ref: 'TailUser',
+    },
+    tailFriends:{
+        type: [Schema.Types.ObjectId],
+        ref: 'TailFriend',
     },
 })
 

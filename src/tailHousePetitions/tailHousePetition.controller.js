@@ -118,12 +118,11 @@ export const acceptTailHousePetitions = async (req, res) => {
         verify:'verified',
         tailUsers:[userHousePetition._id],
     });
-    tailHousePetition.petitionStatus='accepted';
-    console.log(newTailHouse);
-    console.log(tailHousePetition);
-    //await TailHousePetition.findByIdAndUpdate(idTailHousePetition,{petitionStatus:'accepted'});
+    await TailHousePetition.findByIdAndUpdate(idTailHousePetition,{petitionStatus:'accepted',tailHouse:newTailHouse._id});
+
+    newTailHouse.save();
 
     res.status(200).json({
-        msg:'Petition accepted'
+        msg: `Petition accepted successfully and TailHouse created successfully The ID Tail House is: ${newTailHouse.id}`,
     });
 }
