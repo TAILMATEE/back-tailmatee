@@ -88,7 +88,7 @@ export const login = async (req, res) => {
         const token = await generateJWT(tailUser.id)
 
         res.status(200).json({
-            msg: `Login Successful, your token is: ${token}`,
+            token,
             tailUser
         })
 
