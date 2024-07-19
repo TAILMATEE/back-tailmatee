@@ -8,7 +8,7 @@ import {
 
     createPost,
 
-    getPosts
+    getPost
 
 } from './post.controller.js';
 
@@ -56,7 +56,7 @@ router.get(
 
         validateFields
 
-    ], getPosts
+    ], getPost
 
 )
 

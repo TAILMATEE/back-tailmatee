@@ -1,8 +1,8 @@
-export { dateWithTime } from '../post/post.controller.js';
-
 import Comment from './comment.model.js';
 
 import Post from '../post/post.model.js';
+
+import { dateWithTime } from '../denoucement/denoucement.controller.js';
 
 export  const createComment = async (req, res) => {
 

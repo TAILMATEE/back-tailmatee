@@ -1,6 +1,6 @@
-import { dateWithTime } from '../denoucement/denoucement.controller.js';
-
 import Post from './post.model.js';
+
+import { dateWithTime } from '../denoucement/denoucement.controller.js';
 
 export const createPost = async (req, res) => {
 
