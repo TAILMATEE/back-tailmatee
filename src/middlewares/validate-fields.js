@@ -38,3 +38,13 @@ export const validatePlaceIsYours = async (req, res, next) => {
     }
   }
 }
+
+export const validateIdTailHouseParam = async(req,res,next) => {
+  const { idTailHouse } = req.params;
+  if (!idTailHouse || idTailHouse == '') {
+    return res.status(400).json({
+      msg: 'idTailHouse is required'
+    })
+  }
+  next();
+}

@@ -1,6 +1,7 @@
 import TailUser from '../tailUser/tailUser.model.js'
 import TailFriend from '../tailFriend/tailFriend.model.js';
 import ValidationTailUser from '../generalValidation/validationTailUser.model.js'
+import TailHouse from '../TailHouse/tailHouse.model.js';
 import Denoucement from '../denoucement/denoucement.model.js'
 
 export const existentUsername = async (username = "") => {
@@ -66,5 +67,12 @@ export const validateIdDenoucement = async (_id = 0) => {
 
     throw new Error(`The Id ${_id} doesn't exists`);
 
+  }
+}
+
+export const validateTailHouse = async (idTailHouse = '') => {
+  const tailHouse = await TailHouse.findById(idTailHouse);
+  if (!tailHouse) {
+    throw new Error(`The Id ${idTailHouse} doesn't exists`);
   }
 }
