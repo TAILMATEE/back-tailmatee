@@ -4,7 +4,16 @@ import { check } from 'express-validator';
 
 import { validateFields } from '../middlewares/validate-fields.js'
 
-import { createDenoucement, acceptDenoucement, denyDenoucement, getPendingDenoucement } from '../denoucement/denoucement.controller.js';
+import { 
+    
+    createDenoucement, 
+    acceptDenoucement, 
+    denyDenoucement, 
+    getPendingDenoucement, 
+    getAproveDenoucement,
+    getDenyDenoucement 
+
+} from '../denoucement/denoucement.controller.js';
 
 import {  validateJWT } from '../middlewares/validate-jwt.js'
 
@@ -88,6 +97,34 @@ router.get('/',
         validateFields
 
     ], getPendingDenoucement
+
+)
+
+router.get('/aproved',
+
+    [
+
+        validateJWT,
+
+        haveRol('tailAdmin', 'tailSupport'),
+
+        validateFields
+
+    ], getAproveDenoucement
+
+)
+
+router.get('/deny',
+
+    [
+
+        validateJWT,
+
+        haveRol('tailAdmin', 'tailSupport'),
+
+        validateFields
+
+    ], getDenyDenoucement
 
 )
 

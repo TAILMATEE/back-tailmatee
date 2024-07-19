@@ -78,3 +78,39 @@ export const getPendingDenoucement = async (req, res) => {
 
 
 }
+
+export const getAproveDenoucement = async (req, res) => {
+
+    const { limit, from } = req.query;
+
+    const query = { status: 'done' };
+
+    const [total, denoucement] = await Promise.all([
+
+        Denoucement.countDocuments(query),
+        Denoucement.find(query).skip(Number(from)).limit(Number(limit))
+
+    ]);
+
+    res.status(200).json({ msg: `The ${total} aprove denoucements are:`, denoucement });
+
+
+}
+
+export const getDenyDenoucement = async (req, res) => {
+
+    const { limit, from } = req.query;
+
+    const query = { status: 'fake' };
+
+    const [total, denoucement] = await Promise.all([
+
+        Denoucement.countDocuments(query),
+        Denoucement.find(query).skip(Number(from)).limit(Number(limit))
+
+    ]);
+
+    res.status(200).json({ msg: `The ${total} fake denoucements are:`, denoucement });
+
+
+}
