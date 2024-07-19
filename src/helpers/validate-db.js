@@ -75,4 +75,14 @@ export const validateTailHouse = async (idTailHouse = '') => {
   if (!tailHouse) {
     throw new Error(`The Id ${idTailHouse} doesn't exists`);
   }
+
+export const validateTailFriend = async (tailFriend = '') =>{
+
+  const foundTailFriend = await TailFriend.findOne({username: tailFriend});
+
+  if(!foundTailFriend){
+
+    throw new Error(`The TailFriend ${tailFriend} doesn't exists`);
+
+  }
 }
