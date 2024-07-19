@@ -2,13 +2,13 @@ import { parse, format } from 'date-fns';
 
 import Denoucement from "./denoucement.model.js";
 
-export const dateWithTime = (date) => {
+export const dateWithTime =  (date) => {
 
     const parseDate = parse(date, 'MM/dd/yyyy HH:mm:ss', new Date());
 
     const formattedDate = format(parseDate, 'MM/dd/yyyy ss:mm:HH');
 
-    return formattedDate;
+    return parseDate;
 
 }
 

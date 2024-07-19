@@ -76,6 +76,8 @@ export const validateTailHouse = async (idTailHouse = '') => {
     throw new Error(`The Id ${idTailHouse} doesn't exists`);
   }
 
+}
+
 export const validateTailFriend = async (tailFriend = '') =>{
 
   const foundTailFriend = await TailFriend.findOne({username: tailFriend});
