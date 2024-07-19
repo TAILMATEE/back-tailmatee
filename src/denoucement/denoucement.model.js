@@ -48,4 +48,4 @@ const denoucementSchema = new mongoose.Schema({
 });
 
 
-export const Denoucement = mongoose.model('Denoucement', denoucementSchema)
+export default mongoose.model('Denoucement', denoucementSchema)

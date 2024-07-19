@@ -1,17 +1,12 @@
-import { withoutTime } from "../../configs/defaultCredentials.js";
-import { Denoucement } from "./denoucement.model.js";
-
 import { parse, format } from 'date-fns';
 
 import Denoucement from "./denoucement.model.js";
 
-export { withoutTime } from '../../configs/defaultCredentials.js';
-
 export const dateWithTime = (date) => {
 
-    const parseDate = parse(date, 'MM-dd-yyyy HH:mm:ss', new Date());
+    const parseDate = parse(date, 'MM/dd/yyyy HH:mm:ss', new Date());
 
-    const formattedDate = format(parseDate, 'MM/dd/yyyy/ss/mm/HH');
+    const formattedDate = format(parseDate, 'MM/dd/yyyy ss:mm:HH');
 
     return formattedDate;
 
@@ -21,7 +16,7 @@ export const createDenoucement = async (req, res) => {
 
     const { dateAndTime, typeOfPet, typeOfAbuse, description } = req.body;
 
-    const date = withoutTime(dateAndTime);
+    const date = dateWithTime(dateAndTime);
 
     const newDenoucement = new Denoucement({ 
         tailUser: req.tailUser.username,
@@ -44,31 +39,29 @@ export const createDenoucement = async (req, res) => {
 
 }
 
-const acceptDenoucement = async (req, res) => {
+export const acceptDenoucement = async (req, res) => {
 
     const { _id } = req.params;
 
-    await Denoucement.findOneAndUpdate({ _id }, { status: 'done' });
+    console.log(_id);
 
-    const findDenoucement = await Denoucement.findOne({ _id });
+    const findDenoucement = await Denoucement.findOneAndUpdate({ _id }, { status: 'done' });
 
-    res.status(200).json({ msg: `${findDenoucement.tailUser} your denoucement was accepted` })
+    res.status(200).json({ msg: `The denoucement of the tailUser ${findDenoucement.username}; was accepted` })
 
 }
 
-const denyDenoucement = async (req, res) => {
+export const denyDenoucement = async (req, res) => {
 
     const { _id } = req.params;
 
-    await Denoucement.findOneAndUpdate({ _id }, { status: 'fake' });
+    const findDenoucement = await Denoucement.findOneAndUpdate({ _id }, { status: 'fake' });
 
-    const findDenoucement = await Denoucement.findOne({ _id });
-
-    res.status(200).json({ msg: `${findDenoucement.tailUser} your denoucement was deny` })
+    res.status(200).json({ msg: `The denoucement of the tailUser ${findDenoucement.username}; was deny` })
 
 }
 
-const getPendingDenoucement = async (req, res) => {
+export const getPendingDenoucement = async (req, res) => {
 
     const { limit, from } = req.query;
 

@@ -4,7 +4,7 @@ import { check } from 'express-validator';
 
 import { validateFields } from '../middlewares/validate-fields.js'
 
-import { createDenoucement, acceptDenoucement, denyDenoucement } from '../denoucement/denoucement.controller.js';
+import { createDenoucement, acceptDenoucement, denyDenoucement, getPendingDenoucement } from '../denoucement/denoucement.controller.js';
 
 import {  validateJWT } from '../middlewares/validate-jwt.js'
 
@@ -22,14 +22,14 @@ const router = Router();
 
 router.put(
 
-    '/:id/accept',
+    '/:_id/accept',
     [
 
         validateJWT,
 
         haveRol('tailAdmin', 'tailSupport'),
 
-        check('id', 'Id is required').not().isEmpty(),
+        check('_id', 'Id is required').not().isEmpty(),
 
         validateFields
     
@@ -37,16 +37,16 @@ router.put(
 
 )
 
-router.put(
+router.delete(
 
-    '/:id/deny',
+    '/:_id/deny',
     [
 
         validateJWT,
 
         haveRol('tailAdmin', 'tailSupport'),
 
-        check('id', 'Id is required').not().isEmpty(),
+        check('_id', 'Id is required').not().isEmpty(),
 
         validateFields
     
@@ -66,12 +66,6 @@ router.post(
 
         check('dateAndTime', 'Date and time is required').not().isEmpty(),
 
-        check('dateAndTime').custom(validYear),
-
-        check('dateAndTime').custom(validMonth),
-
-        check('dateAndTime').custom(validDate),
-
         check('typeOfPet', 'Type of pet is required').not().isEmpty(),
 
         check('typeOfAbuse', 'Type of abuse is required').not().isEmpty(),
@@ -80,6 +74,20 @@ router.post(
 
         validateFields,
     ], createDenoucement
+
+)
+
+router.get('/',
+
+    [
+
+        validateJWT,
+
+        haveRol('tailAdmin', 'tailSupport'),
+
+        validateFields
+
+    ], getPendingDenoucement
 
 )
 

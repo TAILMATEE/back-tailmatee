@@ -12,7 +12,7 @@ import { calculateAge } from '../src/auth/auth.controller.js'
 
 export const withoutTime = (date) =>{
 
-    const parseDate = parse(date, 'MM-dd-yyyy', new Date()); // Format to received Postman
+    const parseDate = parse(date, 'MM/dd/yyyy', new Date()); // Format to received Postman
 
     parseDate.setUTCHours(0, 0, 0, 0);
 
@@ -24,7 +24,7 @@ export const withoutTime = (date) =>{
 
 export const adminCredentials = async () => {
 
-    const bds = '12-04-2005';
+    const bds = '12/04/2005';
 
     const formatDate = withoutTime(bds);
 
