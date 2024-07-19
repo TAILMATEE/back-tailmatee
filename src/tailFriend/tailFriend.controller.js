@@ -6,6 +6,7 @@ import {
 } from '../helpers/help-functions.js';
 import TailFriend from './tailFriend.model.js';
 import { uploadImageToImgBB } from '../helpers/upload-image.js';
+import { withoutTime } from '../../configs/defaultCredentials.js';
 
 export const postTailFriend = async (req, res) => {
     const { _id, username } = req.tailUser;
@@ -22,7 +23,7 @@ export const postTailFriend = async (req, res) => {
     } = req.body;
 
     let usernameTailFriend = `${username}/${name}`;
-    const birthDate = new Date(birthdate);
+    const birthDate = withoutTime(birthdate);
 
     const tailFriend = new TailFriend({
         tailOwner: _id,
