@@ -123,7 +123,7 @@ export const validateBirthDate = async (birthdate = "") => {
 
   for (let i = 0; i < birthdate.length; i++) {
 
-    if(birthdate[i] == '-'){
+    if(birthdate[i] == '/'){
 
       count = count + 1;
 
@@ -133,7 +133,7 @@ export const validateBirthDate = async (birthdate = "") => {
 
   if(count != 2){
 
-    throw new Error("You need to follow the format DD/MM/YYYY using the '-' separator of the date, month and year; exameple: 01-01-2000");
+    throw new Error("You need to follow the format MM/DD/YYYY using the '/' separator of the date, month and year; exameple: 01-01-2000");
 
   }
 

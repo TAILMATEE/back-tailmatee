@@ -1,6 +1,7 @@
 import TailUser from '../tailUser/tailUser.model.js'
 import TailFriend from '../tailFriend/tailFriend.model.js';
 import ValidationTailUser from '../generalValidation/validationTailUser.model.js'
+import Denoucement from '../denoucement/denoucement.model.js'
 
 export const existentUsername = async (username = "") => {
   const existUsername = await TailUser.findOne({ username });
@@ -48,4 +49,16 @@ export const validateMyTailFriend = async(req,res,next)=>{
     }
   }
   next();
+}
+
+export const validateIdDenoucement = async(_id = 0)=>{
+
+  const existId = await Denoucement.findOne({ _id });
+
+  if (!existId) {
+
+    throw new Error(`The Id ${_id} doesn't exists`);
+
+  }
+
 }

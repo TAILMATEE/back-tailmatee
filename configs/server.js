@@ -18,6 +18,8 @@ import authRoutes from '../src/auth/auth.routes.js';
 import tailUserRoutes from '../src/tailUser/tailUser.routes.js';
 import fileUpload from 'express-fileupload'
 
+import denoucementRoutes from '../src/denoucement/denoucement.routes.js';
+
 class Server {
     constructor(){
 
@@ -28,6 +30,8 @@ class Server {
         this.tailFriendPath = '/tailmatee/v1/tailFriend'
 
         this.tailUserPath = '/tailmatee/v1/tailUser'
+
+        this.denoucementPath = '/tailmatee/v1/denoucement'
 
         this.middlewares();
         this.connectDB();
@@ -76,6 +80,8 @@ class Server {
         this.app.use(this.tailFriendPath, TailFriend);
 
         this.app.use(this.tailUserPath, tailUserRoutes);
+
+        this.app.use(this.denoucementPath, denoucementRoutes);
 
     }
 
