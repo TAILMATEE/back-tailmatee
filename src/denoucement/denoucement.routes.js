@@ -27,6 +27,12 @@ import {
 
 } from '../helpers/validate-fields.js'
 
+import {
+
+    validateIdDenoucement
+
+} from '../helpers/validate-db.js'
+
 const router = Router();
 
 router.put(
@@ -39,6 +45,8 @@ router.put(
         haveRol('tailAdmin', 'tailSupport'),
 
         check('_id', 'Id is required').not().isEmpty(),
+
+        check('_id').custom(validateIdDenoucement),
 
         validateFields
     
@@ -56,6 +64,8 @@ router.delete(
         haveRol('tailAdmin', 'tailSupport'),
 
         check('_id', 'Id is required').not().isEmpty(),
+
+        check('_id').custom(validateIdDenoucement),
 
         validateFields
     
